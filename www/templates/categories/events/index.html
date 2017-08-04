@@ -1,0 +1,28 @@
+<ion-view title="Things Happening">
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon icon ion-ios-search-strong" apply-search-filter filter="title" data="data">
+        </button>
+    </ion-nav-buttons>
+    <ion-content padding="true" class="has-header forced-scroll">    
+        <div class="food-tile" ng-repeat="event in data.items" ng-click="childClick(event)">
+            <div class="image-area" style="background-image: url({{event.banner}})">
+
+            </div>
+            <div class="row">
+                <div class="col col-100 name">
+                    {{event.title}}
+                </div>                         
+            </div>
+            <div class="row">
+                <div class="col col-100 speciality">
+                    {{event.startTime|date : 'M/dd/yy h:mm a EEEE'}}
+                </div>              
+            </div>
+        </div>
+        <div class="no-content-available text-center" ng-if="!data.items.length && !data.loading">
+            <h2><i class="ion-android-sad"></i></h2>
+            <h2>Content not available</h2>
+        </div>
+    </ion-content>
+    <div ng-include='"templates/geolocation/location_footer.html"'></div>
+</ion-view>
